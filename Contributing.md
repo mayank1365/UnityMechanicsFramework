@@ -98,6 +98,7 @@ This prevents wasted effort if the mechanic is out of scope or already in progre
 ### 3.3 Read the existing mechanics
 
 Before writing code, study at least one existing mechanic in the repository — ideally one closest to what you plan to build. Understanding the patterns already in use (MonoSingleton, IPhysicsAdapter, ScriptableObject data) will help you write code that fits naturally into the framework.
+If you are into vidoes then this is a video guide for Contributing (but would make more sense once you read this doc)- https://drive.google.com/file/d/113GKIsXtv2R4fxNOHIhpJ-wPA6Ss6MLs/view?usp=sharing 
 
 ---
 
