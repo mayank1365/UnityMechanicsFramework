@@ -187,7 +187,7 @@ EventBus.Subscribe<PlayerJumpedEvent>(e => audioManager.PlayJumpSound());
 | 2 | [Generic & Scalable Dialogue System](#2-generic--scalable-dialogue-system) | Mayur | Dialogue | [▶ Watch]
 | 64 | [Utils](#64-Utils) | [Shubham ](https://github.com/vijit101) | Core | [▶ Watch]() |
 (https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
-| 6 | [Screen Shake System](#3-screen-shake-system) | [Paramjeet Kaur](https://github.com/kauxp/) | Systems | [▶ Watch](Samples~/ScreenShakeExample/Video/ScreenShakeSystemTutorial.mp4) |
+| 6 | [Screen Shake System](#6-screen-shake-system) | [Paramjeet Kaur](https://github.com/kauxp/) | Systems | [▶ Watch](Samples~/ScreenShakeExample/Video/ScreenShakeTutorial.mp4) |
 
 *More mechanics are added with every merged PR. [Contribute yours →](#9-how-to-contribute)*
 
@@ -285,10 +285,10 @@ dialogueSystem.StartDialogue(npcDatabase, onComplete: () =>
 |---|---|
 | **Author** | [Paramjeet Kaur](https://github.com/kauxp) |
 | **Namespace** | `GameplayMechanicsUMFOSS.Systems` |
-| **Location** | `Runtime/Systems/ScreenShakeSystem_UMFOSS.cs` |
+| **Location** | `Runtime/Systems/ScreenShake/ScreenShakeSystem_UMFOSS.cs` |
 | **Category** | Systems |
-| **Demo Scene** | `Samples~/ScreenShakeSystem/Assets/Scenes/DemoScene.unity` |
-| **Video** | [▶ Watch Walkthrough](Samples~/ScreenShakeExample/Video/ScreenShakeSystemTutorial.mp4) |
+| **Demo Scene** | `Samples~/ScreenShakeExample/Assets/Scenes/DemoScene.unity` |
+| **Video** | [▶ Watch Walkthrough](Samples~/ScreenShakeExample/Video/ScreenShakeTutorial.mp4) |
 
 **What it does**
 
@@ -302,25 +302,28 @@ A trauma-based camera shake system for Unity. Adds smooth positional and rotatio
    - **TraumaMultiplier** — intensity scaling  
    - **PositionMagnitude** — positional shake strength  
    - **RotationMagnitude** — rotational shake strength  
-3. Add `ShakeDemoButton` script to a Canvas UI Button and set `magnitude` and `duration`.  
+3. Add `ShakeDemoButtons` script to a Canvas UI Button and set `magnitude` and `duration`.  
 
 ```csharp
 using UnityEngine;
 using GameplayMechanicsUMFOSS.Systems;
 
-public class ShakeButton : MonoBehaviour
+namespace GameplayMechanicsUMFOSS.Samples.ScreenShake
 {
-    [SerializeField] public float magnitude ;
-    [SerializeField] public float duration ;
-
-    public void Trigger()
+    public class ShakeDemoButtons : MonoBehaviour
     {
-        ScreenShakeSystem_UMFOSS.Instance.TriggerShake(magnitude, duration);
+        [SerializeField] public float magnitude;
+        [SerializeField] public float duration;
+
+        public void Trigger()
+        {
+            ScreenShakeSystem_UMFOSS.Instance.TriggerShake(magnitude, duration);
+        }
     }
 }
 ```
 
-4. In the Button’s `OnClick()`, assign the `Trigger()` method of `ShakeButton`.  
+4. In the Button’s `OnClick()`, assign the `Trigger()` method of `ShakeDemoButtons`.  
 
 
 
