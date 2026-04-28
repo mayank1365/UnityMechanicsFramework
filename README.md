@@ -183,13 +183,12 @@ EventBus.Subscribe<PlayerJumpedEvent>(e => audioManager.PlayJumpSound());
 
 | # | Mechanic | Author | Category | Video |
 |---|---|---|---|---|
+| 3 | [Robust Audio Manager (#11)](#3-robust-audio-manager-11) | [Mayank Gupta](https://github.com/mayank1365) & [Suswetha](https://github.com/Suswetha6) | Systems | [▶ Watch](Samples~/AudioManager/AudioManagerVideo.zip) |
 | 1 | [MonoSingleton Generic](#1-monosingleton-generic) | Shubham B | Core | (https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
 | 2 | [Generic & Scalable Dialogue System](#2-generic--scalable-dialogue-system) | Mayur | Dialogue | [▶ Watch]
 | 3 | [Modular Jump System](#3-modular-jump-system) | [Ankur Kalita](https://github.com/ankur-kalita) | Movement | [▶ Watch](./Samples~/JumpSystemSample/Video/ModularJumpImpl.mp4.zip) |
 | 64 | [Utils](#64-Utils) | [Shubham ](https://github.com/vijit101) | Core | [▶ Watch]() |
-
 | 6 | [Screen Shake System](#6-screen-shake-system) | [Paramjeet Kaur](https://github.com/kauxp) | Systems | [▶ Watch](Samples~/ScreenShakeExample/Video/ScreenShakeTutorial.mp4) |
-(https://github.com/vijit101/UnityMechanicsFramework/tree/main/RuntimeMechanics/Dailogue/2.%20GenericAndScalableDialogueSystem/Assets/Video%20tutorial) |
 | 3 | [Scene Manager System](#3-scene-manager-system) | [Nymish](https://github.com/nymishkash) | Systems | [▶ Watch](Samples~/SceneManagerSample/SceneManagerVideos.zip) |
 |
 
@@ -467,6 +466,64 @@ jumpSystem.OnJumpEnd += () => Debug.Log("Landed!");
 - **Demonstrates the Strategy pattern** — swappable physics backends via interface abstraction, teaching clean dependency inversion in Unity
 
 ---
+
+### 3. Robust Audio Manager (#11)
+
+| | |
+|---|---|
+| **Author** | [Mayank Gupta](https://github.com/mayank1365) & [Suswetha](https://github.com/Suswetha6) | 
+| **Namespace** | `GameplayMechanicsUMFOSS.Systems` |
+| **Location** | `Runtime/Systems/AudioManager/AudioManager_UMFOSS.cs` |
+| **Category** | Systems / Audio |
+| **Demo Scene** | `Samples~/AudioManager/Assets/Scenes/DemoScene.unity` |
+| **Video** | [▶ Watch Walkthrough](Samples~/AudioManager/AudioManagerVideo.zip) |
+
+---
+
+### What it does
+
+A centralized, pool-based audio management system for handling:
+- 2D/3D sound effects  
+- Crossfaded music transitions  
+- Looping ambient audio  
+
+Removes hardcoded references by using:
+- Event-driven architecture (EventBus)  
+- ScriptableObject-based configurations  
+
+---
+
+### How to use it
+
+```csharp
+using GameplayMechanicsUMFOSS.Core;
+using GameplayMechanicsUMFOSS.Systems;
+
+// Step 1: Play SFX
+EventBus.Publish(new PlaySFXEvent { key = "Explosion", position = transform.position });
+
+// Step 2: Crossfade music
+EventBus.Publish(new PlayMusicEvent { key = "BattleTheme", fadeIn = true });
+
+// Step 3: Adjust global volume
+EventBus.Publish(new SetVolumeEvent { category = AudioCategory.SFX, volume = 0.8f });
+```
+---
+
+
+## Highlights
+
+- **Pool-Driven SFX**  
+  Pre-instantiates AudioSources to avoid runtime allocation spikes  
+
+- **Decoupled Architecture**  
+  Uses EventBus for communication, preventing tight coupling  
+
+- **Design-Centric Workflow**  
+  ScriptableObjects allow designers to tweak audio without code  
+
+---
+
 
 <!--
 ================================================================
